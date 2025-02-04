@@ -1,0 +1,15 @@
+[tool.poetry]
+name = "picture-show"
+version = "0.1.0"
+description = ""
+authors = ["Stefan Scheffler <stefanscheffler82@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.12"
+pillow = "^11.1.0"
+pillow-heif = "^0.21.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
