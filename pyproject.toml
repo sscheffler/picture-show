@@ -1,11 +1,11 @@
 [tool.poetry]
-name = "picture-show"
+name = "src"
 version = "0.1.0"
 description = ""
 authors = ["Stefan Scheffler <stefanscheffler82@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = "^3.11.9"
 pillow = "^11.1.0"
 pillow-heif = "^0.21.0"
 
