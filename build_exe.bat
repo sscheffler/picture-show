@@ -1,0 +1,1 @@
+poetry run pyinstaller --onefile --noconsole src\\main.py

@@ -11,11 +11,11 @@ pillow_heif.register_heif_opener()
 class ImageViewerApp:
     def __init__(self, root):
         self.root = root
+        self.geometry = self.root.geometry()
         self.root.configure(bg='black')
 
         # Keyboard shortcuts for toggling fullscreen and exiting
-        self.root.bind("<F11>", self.toggle_fullscreen)
-        self.root.bind("<Escape>", self.exit_fullscreen)
+        self.root.bind("<F11>", self.toggle_screen)
         self.root.bind("q", self.exit_app)
 
         # Label for displaying images
@@ -32,6 +32,14 @@ class ImageViewerApp:
 
         # Automatically switch images every 5 seconds
         self.root.after(10000, self.show_next_image)
+        self.full_screen = False
+
+    def toggle_screen(self, event):
+        if self.full_screen:
+            self.exit_fullscreen()
+        else:
+            self.toggle_fullscreen()
+        self.full_screen = not self.full_screen
 
     def select_directory(self):
         """Sets the image directory directly in the code."""
@@ -63,13 +71,20 @@ class ImageViewerApp:
         self.current_image = ImageTk.PhotoImage(img)
         self.image_label.config(image=self.current_image)
 
-    def toggle_fullscreen(self, event=None):
+    def toggle_fullscreen(self):
         """Enables or disables fullscreen mode."""
-        self.root.attributes("-fullscreen", not self.root.attributes("-fullscreen"))
+        #self.root.attributes("-fullscreen", not self.root.attributes("-fullscreen"))
+        # Store geometry for reset
+        self.geometry = self.root.geometry()
+        self.root.overrideredirect(True)
+        self.root.state("zoomed")
 
-    def exit_fullscreen(self, event=None):
+    def exit_fullscreen(self):
         """Exits fullscreen mode if active."""
-        self.root.attributes("-fullscreen", False)
+        #self.root.attributes("-fullscreen", False)
+        self.root.state("normal")
+        self.root.geometry(self.geometry)
+        self.root.overrideredirect(False)
 
     def minimize_window(self, event=None):
         """Minimizes the window."""
