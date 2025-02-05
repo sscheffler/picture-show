@@ -35,7 +35,7 @@ class ImageViewerApp:
 
     def select_directory(self):
         """Sets the image directory directly in the code."""
-        directory = "/home/sscheffler/Bilder/Jonas"  # Replace with your desired directory path
+        directory = r"C:\Users\stefa\OneDrive\Pictures\Jonas"  # Replace with your desired directory path
         if directory and os.path.exists(directory):
             # Supported image formats
             extensions = (".png", ".jpg", ".jpeg", ".bmp", ".gif", ".heic")
